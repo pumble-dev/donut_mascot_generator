@@ -21,11 +21,12 @@
     var(--surface);border-radius:10px;overflow:hidden}
   .layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
   .layer img,.layer svg{width:100%;height:100%;object-fit:contain;pointer-events:none}
-  #layer-body       { z-index:0; }
-  #layer-pose       { z-index:1; }
-  #layer-face       { z-index:2; }
-  #layer-hand-left  { z-index:3; }
-  #layer-hand-right { z-index:4; }
+  #layer-hand-right { z-index:0; }
+  #layer-body       { z-index:1; }
+  #layer-pose       { z-index:2; }
+  #layer-face       { z-index:3; }
+  #layer-hand-left  { z-index:4; }
+
 
   .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:14px}
   .row{display:flex;align-items:center;gap:10px;justify-content:center;}
@@ -45,11 +46,11 @@
   <div class="app">
     <section class="stage-wrap">
       <div class="stage" id="stage" aria-label="Mascot">
-        <div class="layer" id="layer-body"></div>
-        <div class="layer" id="layer-pose"></div>
-        <div class="layer" id="layer-face"></div>
-        <div class="layer" id="layer-hand-left"></div>
-        <div class="layer" id="layer-hand-right"></div>
+          <div class="layer" id="layer-hand-right"></div>
+          <div class="layer" id="layer-body"></div>
+          <div class="layer" id="layer-pose"></div>
+          <div class="layer" id="layer-face"></div>
+          <div class="layer" id="layer-hand-left"></div>
       </div>
     </section>
     <aside class="panel" id="ui">
@@ -109,7 +110,7 @@ const ASSETS = {
     "Body--Mid-air jump.svg","Body--Neutral.svg"
   ]
 };
-const LAYERS = ["body","pose","face","handLeft","handRight"];
+const LAYERS = ["handRight","body","pose","face","handLeft"];
 const state = { activeLayer: "face", index: { pose:0, handLeft:0, handRight:0, face:0, body:0 } };
 function srcFor(file){ return "svg/" + encodeURIComponent(file); }
 function altTrimmedName(file){ return file.replace(/\s+\.svg$/i, ".svg"); }
@@ -261,3 +262,4 @@ document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
 </html>
+
